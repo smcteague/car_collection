@@ -29,6 +29,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String, nullable = True, default = '')
     token = db.Column(db.String, default = '', unique = True)
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow())
+    drone = db.relationship('Drone', backref = 'owner', lazy = True)
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = ''):
         self.id = self.set_id()
